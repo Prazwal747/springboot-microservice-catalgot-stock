@@ -1,9 +1,8 @@
 package com.quiz.quizService.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Quiz {
@@ -14,14 +13,27 @@ public class Quiz {
 
     private String title;
 
+//    @Transient
+    transient private List<Question> questions;
+
+    public List<Question> getQuestions() {
+        return questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        this.questions = questions;
+    }
+
+    public Quiz(Long id, String title, List<Question> questions) {
+        this.id = id;
+        this.title = title;
+        this.questions = questions;
+    }
+
     public Quiz(){
 
     }
 
-    public Quiz(Long id, String title) {
-        this.id = id;
-        this.title = title;
-    }
 
     public Long getId() {
         return id;
